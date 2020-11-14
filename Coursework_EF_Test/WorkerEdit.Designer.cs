@@ -53,6 +53,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(574, 22);
             this.textBox1.TabIndex = 5;
+            this.textBox1.Validating += new System.ComponentModel.CancelEventHandler(this.textBox1_Validating);
             // 
             // textBox2
             // 
@@ -81,6 +82,10 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            "Муж.",
+            "Жен.",
+            "Не определено"});
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(12, 146);
             this.comboBox1.Name = "comboBox1";
@@ -96,6 +101,7 @@
             this.button1.TabIndex = 10;
             this.button1.Text = "Добавить";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -125,6 +131,7 @@
             this.Name = "WorkerEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Редактировать сотрудника";
+            this.Load += new System.EventHandler(this.WorkerEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

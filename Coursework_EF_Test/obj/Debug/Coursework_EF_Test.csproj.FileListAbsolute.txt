@@ -1,5 +1,3 @@
-C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\Account.mdf
-C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\Account_log.ldf
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\Coursework_EF_Test.exe.config
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\Coursework_EF_Test.exe
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\Coursework_EF_Test.pdb
@@ -7,7 +5,6 @@ C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\EntityFra
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\EntityFramework.xml
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.csprojAssemblyReference.cache
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.Form1.resources
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.Properties.Resources.resources
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.csproj.GenerateResource.cache
@@ -21,3 +18,6 @@ C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursewor
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.WorkerAdd.resources
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.WorkerDel.resources
 C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.WorkerEdit.resources
+C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\obj\Debug\Coursework_EF_Test.csprojAssemblyReference.cache
+C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\Account.mdf
+C:\Users\derem\source\repos\Coursework_EF\Coursework_EF_Test\bin\Debug\Account_log.ldf

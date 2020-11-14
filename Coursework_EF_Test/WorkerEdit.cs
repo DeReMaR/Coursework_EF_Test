@@ -16,5 +16,30 @@ namespace Coursework_EF_Test
         {
             InitializeComponent();
         }
+
+        private void WorkerEdit_Load(object sender, EventArgs e)
+        {
+            textBox1.Focus();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("Не заполнено поле ФИО");
+            }
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("Не заполнена должность сотрудника");
+            }
+        }
+
+        private void textBox1_Validating(object sender, CancelEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBox1.Text, @"([А-ЯЁ][а-яё]+[\-\s]?){3,}"))
+            {
+                MessageBox.Show("Пожалуйста, вводите ФИО полностью. Если у сотрудника отстутствует отчество или присутствуют другие отличия, нажмите 'ОК'.");
+            }
+        }
     }
 }
