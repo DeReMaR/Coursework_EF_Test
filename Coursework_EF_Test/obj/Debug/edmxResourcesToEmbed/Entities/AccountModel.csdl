@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AccountModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="AccountModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="WorkerSet" EntityType="AccountModel.Worker" />
+    <EntitySet Name="AccountSet" EntityType="AccountModel.Account" />
+    <AssociationSet Name="WorkerAccount" Association="AccountModel.WorkerAccount">
+      <End Role="Worker" EntitySet="WorkerSet" />
+      <End Role="Account" EntitySet="AccountSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id_Worker" />
+    </Key>
+    <Property Name="Id_Worker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WName" Type="String" Nullable="false" />
+    <Property Name="WPosition" Type="String" Nullable="false" />
+    <Property Name="WSex" Type="String" Nullable="false" />
+    <NavigationProperty Name="AccountNav" Relationship="AccountModel.WorkerAccount" FromRole="Worker" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id_Account" />
+    </Key>
+    <Property Name="Id_Account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="APlace" Type="Int32" Nullable="false" />
+    <Property Name="AObjName" Type="String" Nullable="false" />
+    <Property Name="AInvNum" Type="Int32" Nullable="false" />
+    <Property Name="ADate" Type="DateTime" Nullable="false" />
+    <Property Name="AUsage" Type="Int32" Nullable="false" />
+    <Property Name="APrice" Type="Int32" Nullable="false" />
+    <Property Name="ACount" Type="Int32" Nullable="false" />
+    <Property Name="ASum" Type="Int32" Nullable="false" />
+    <Property Name="AStatus" Type="String" Nullable="false" />
+    <NavigationProperty Name="WorkerNav" Relationship="AccountModel.WorkerAccount" FromRole="Account" ToRole="Worker" />
+    <Property Name="WorkerId_Worker" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="WorkerAccount">
+    <End Type="AccountModel.Worker" Role="Worker" Multiplicity="1" />
+    <End Type="AccountModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id_Worker" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="WorkerId_Worker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

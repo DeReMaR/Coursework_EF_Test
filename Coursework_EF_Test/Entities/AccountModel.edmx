@@ -4,11 +4,53 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="AccountModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="AccountModelTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="AccountModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AccountModelStoreContainer">
+    <EntitySet Name="WorkerSet" EntityType="AccountModel.Store.WorkerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountSet" EntityType="AccountModel.Store.AccountSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="WorkerAccount" Association="AccountModel.Store.WorkerAccount">
+      <End Role="Worker" EntitySet="WorkerSet" />
+      <End Role="Account" EntitySet="AccountSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="WorkerSet">
+    <Key>
+      <PropertyRef Name="Id_Worker" />
+    </Key>
+    <Property Name="Id_Worker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WPosition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WSex" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountSet">
+    <Key>
+      <PropertyRef Name="Id_Account" />
+    </Key>
+    <Property Name="Id_Account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="APlace" Type="int" Nullable="false" />
+    <Property Name="AObjName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AInvNum" Type="int" Nullable="false" />
+    <Property Name="ADate" Type="datetime" Nullable="false" />
+    <Property Name="AUsage" Type="int" Nullable="false" />
+    <Property Name="APrice" Type="int" Nullable="false" />
+    <Property Name="ACount" Type="int" Nullable="false" />
+    <Property Name="ASum" Type="int" Nullable="false" />
+    <Property Name="AStatus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkerId_Worker" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="WorkerAccount">
+    <End Role="Worker" Type="AccountModel.Store.WorkerSet" Multiplicity="1" />
+    <End Role="Account" Type="AccountModel.Store.AccountSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id_Worker" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="WorkerId_Worker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AccountModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -22,38 +64,40 @@
         </EntityContainer>
         <EntityType Name="Worker">
           <Key>
-            <PropertyRef Name="ID_Worker" />
+            <PropertyRef Name="Id_Worker" />
           </Key>
-          <Property Name="ID_Worker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Worker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="WName" Type="String" Nullable="false" />
           <Property Name="WPosition" Type="String" Nullable="false" />
           <Property Name="WSex" Type="String" Nullable="false" />
-          <NavigationProperty Name="Account_Nav" Relationship="AccountModel.WorkerAccount" FromRole="Worker" ToRole="Account" />
+          <NavigationProperty Name="AccountNav" Relationship="AccountModel.WorkerAccount" FromRole="Worker" ToRole="Account" />
         </EntityType>
         <EntityType Name="Account">
           <Key>
-            <PropertyRef Name="ID_Account" />
+            <PropertyRef Name="Id_Account" />
           </Key>
-          <Property Name="ID_Account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_Worker" Type="String" Nullable="false" />
-          <Property Name="APlace" Type="String" Nullable="false" />
-          <Property Name="ADate" Type="String" Nullable="false" />
-          <Property Name="AInvNum" Type="Int32" Nullable="false" />
+          <Property Name="Id_Account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="APlace" Type="Int32" Nullable="false" />
           <Property Name="AObjName" Type="String" Nullable="false" />
-          <Property Name="APrice" Type="Int32" Nullable="false" />
+          <Property Name="AInvNum" Type="Int32" Nullable="false" />
+          <Property Name="ADate" Type="DateTime" Nullable="false" />
           <Property Name="AUsage" Type="Int32" Nullable="false" />
+          <Property Name="APrice" Type="Int32" Nullable="false" />
+          <Property Name="ACount" Type="Int32" Nullable="false" />
+          <Property Name="ASum" Type="Int32" Nullable="false" />
           <Property Name="AStatus" Type="String" Nullable="false" />
-          <NavigationProperty Name="Worker_Nav" Relationship="AccountModel.WorkerAccount" FromRole="Account" ToRole="Worker" />
+          <NavigationProperty Name="WorkerNav" Relationship="AccountModel.WorkerAccount" FromRole="Account" ToRole="Worker" />
+          <Property Name="WorkerId_Worker" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="WorkerAccount">
-          <End Type="AccountModel.Worker" Role="Worker" Multiplicity="*" />
-          <End Type="AccountModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="AccountModel.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="AccountModel.Account" Role="Account" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="ID_Account" />
+            <Principal Role="Worker">
+              <PropertyRef Name="Id_Worker" />
             </Principal>
-            <Dependent Role="Worker">
-              <PropertyRef Name="AccountID_Account" />
+            <Dependent Role="Account">
+              <PropertyRef Name="WorkerId_Worker" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -61,13 +105,37 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="AccountModel" />
-        <Alias Key="Target" Value="AccountModel.Store" />
-        <EntityContainerMapping CdmEntityContainer="AccountModelContainer" StorageEntityContainer="AccountModelTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AccountModelStoreContainer" CdmEntityContainer="AccountModelContainer">
+    <EntitySetMapping Name="WorkerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AccountModel.Worker)">
+        <MappingFragment StoreEntitySet="WorkerSet">
+          <ScalarProperty Name="Id_Worker" ColumnName="Id_Worker" />
+          <ScalarProperty Name="WName" ColumnName="WName" />
+          <ScalarProperty Name="WPosition" ColumnName="WPosition" />
+          <ScalarProperty Name="WSex" ColumnName="WSex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AccountModel.Account)">
+        <MappingFragment StoreEntitySet="AccountSet">
+          <ScalarProperty Name="Id_Account" ColumnName="Id_Account" />
+          <ScalarProperty Name="APlace" ColumnName="APlace" />
+          <ScalarProperty Name="AObjName" ColumnName="AObjName" />
+          <ScalarProperty Name="AInvNum" ColumnName="AInvNum" />
+          <ScalarProperty Name="ADate" ColumnName="ADate" />
+          <ScalarProperty Name="AUsage" ColumnName="AUsage" />
+          <ScalarProperty Name="APrice" ColumnName="APrice" />
+          <ScalarProperty Name="ACount" ColumnName="ACount" />
+          <ScalarProperty Name="ASum" ColumnName="ASum" />
+          <ScalarProperty Name="AStatus" ColumnName="AStatus" />
+          <ScalarProperty Name="WorkerId_Worker" ColumnName="WorkerId_Worker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -81,6 +149,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

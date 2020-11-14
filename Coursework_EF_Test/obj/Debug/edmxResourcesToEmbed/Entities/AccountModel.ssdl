@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AccountModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AccountModelStoreContainer">
+    <EntitySet Name="WorkerSet" EntityType="AccountModel.Store.WorkerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountSet" EntityType="AccountModel.Store.AccountSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="WorkerAccount" Association="AccountModel.Store.WorkerAccount">
+      <End Role="Worker" EntitySet="WorkerSet" />
+      <End Role="Account" EntitySet="AccountSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="WorkerSet">
+    <Key>
+      <PropertyRef Name="Id_Worker" />
+    </Key>
+    <Property Name="Id_Worker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WPosition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WSex" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountSet">
+    <Key>
+      <PropertyRef Name="Id_Account" />
+    </Key>
+    <Property Name="Id_Account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="APlace" Type="int" Nullable="false" />
+    <Property Name="AObjName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AInvNum" Type="int" Nullable="false" />
+    <Property Name="ADate" Type="datetime" Nullable="false" />
+    <Property Name="AUsage" Type="int" Nullable="false" />
+    <Property Name="APrice" Type="int" Nullable="false" />
+    <Property Name="ACount" Type="int" Nullable="false" />
+    <Property Name="ASum" Type="int" Nullable="false" />
+    <Property Name="AStatus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkerId_Worker" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="WorkerAccount">
+    <End Role="Worker" Type="AccountModel.Store.WorkerSet" Multiplicity="1" />
+    <End Role="Account" Type="AccountModel.Store.AccountSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id_Worker" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="WorkerId_Worker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

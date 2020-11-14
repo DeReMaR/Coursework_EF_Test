@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AccountModelStoreContainer" CdmEntityContainer="AccountModelContainer">
+    <EntitySetMapping Name="WorkerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AccountModel.Worker)">
+        <MappingFragment StoreEntitySet="WorkerSet">
+          <ScalarProperty Name="Id_Worker" ColumnName="Id_Worker" />
+          <ScalarProperty Name="WName" ColumnName="WName" />
+          <ScalarProperty Name="WPosition" ColumnName="WPosition" />
+          <ScalarProperty Name="WSex" ColumnName="WSex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AccountModel.Account)">
+        <MappingFragment StoreEntitySet="AccountSet">
+          <ScalarProperty Name="Id_Account" ColumnName="Id_Account" />
+          <ScalarProperty Name="APlace" ColumnName="APlace" />
+          <ScalarProperty Name="AObjName" ColumnName="AObjName" />
+          <ScalarProperty Name="AInvNum" ColumnName="AInvNum" />
+          <ScalarProperty Name="ADate" ColumnName="ADate" />
+          <ScalarProperty Name="AUsage" ColumnName="AUsage" />
+          <ScalarProperty Name="APrice" ColumnName="APrice" />
+          <ScalarProperty Name="ACount" ColumnName="ACount" />
+          <ScalarProperty Name="ASum" ColumnName="ASum" />
+          <ScalarProperty Name="AStatus" ColumnName="AStatus" />
+          <ScalarProperty Name="WorkerId_Worker" ColumnName="WorkerId_Worker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

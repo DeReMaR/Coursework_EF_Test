@@ -57,7 +57,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -73,10 +75,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountAdd.Designer.cs">
+      <DependentUpon>AccountAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AccountDel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountDel.Designer.cs">
+      <DependentUpon>AccountDel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountEdit.Designer.cs">
+      <DependentUpon>AccountEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Account.cs">
+      <DependentUpon>AccountModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AccountModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AccountModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\AccountModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AccountModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Worker.cs">
+      <DependentUpon>AccountModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -86,6 +127,33 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkerAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerAdd.Designer.cs">
+      <DependentUpon>WorkerAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerDel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerDel.Designer.cs">
+      <DependentUpon>WorkerDel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerEdit.Designer.cs">
+      <DependentUpon>WorkerEdit.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AccountAdd.resx">
+      <DependentUpon>AccountAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountDel.resx">
+      <DependentUpon>AccountDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountEdit.resx">
+      <DependentUpon>AccountEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,10 +166,30 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WorkerAdd.resx">
+      <DependentUpon>WorkerAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerDel.resx">
+      <DependentUpon>WorkerDel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerEdit.resx">
+      <DependentUpon>WorkerEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Entities\AccountModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AccountModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="AccountDataSet.xsc">
+      <DependentUpon>AccountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AccountDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccountDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AccountDataSet.xss">
+      <DependentUpon>AccountDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Entities\AccountModel.edmx.diagram">
       <DependentUpon>AccountModel.edmx</DependentUpon>
     </None>
@@ -127,6 +215,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Account.mdf</DependentUpon>
     </Content>
+    <Content Include="Entities\AccountModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AccountModel.Context.cs</LastGenOutput>
+      <DependentUpon>AccountModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entities\AccountModel.edmx.sql" />
+    <Content Include="Entities\AccountModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AccountModel.cs</LastGenOutput>
+      <DependentUpon>AccountModel.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -140,6 +239,10 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
